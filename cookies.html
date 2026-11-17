@@ -1,0 +1,77 @@
+//SpandanPatel
+//11-17-2026
+//IS117
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cookie Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+    button {
+      padding: 10px 18px;
+      font-size: 16px;
+      margin: 8px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 25px;
+      padding: 15px;
+      background: white;
+      border: 1px solid #ccc;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Simple Cookie Example</h1>
+  <p>Click the button to set a cookie, then reload the page.</p>
+
+  <button onclick="setCookie()">Set Cookie</button>
+  <button onclick="location.reload()">Reload Page</button>
+
+  <div id="result"></div>
+
+  <script>
+    //Javascript STuff
+    //Set the cookie
+    function setCookie() {
+      document.cookie = "username=Student; path=/; max-age=86400; SameSite=Lax";
+      alert("Cookie has been set! Now reload the page.");
+    }
+
+    //Read the cookie
+    function getCookie(name) {
+      let cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(name + "=")) {
+          return cookie.substring(name.length + 1);
+        }
+      }
+      return "";
+    }
+
+    //Show the cookie when the page loads
+    window.onload = function() {
+      let user = getCookie("username");
+      let box = document.getElementById("result");
+
+      if (user) {
+        box.innerHTML = "Cookie found!<br><strong>username = " + user + "</strong>";
+      } else {
+        box.innerHTML = "No cookie found yet.";
+      }
+    };
+  </script>
+
+</body>
+</html>
